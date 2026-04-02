@@ -1,0 +1,25 @@
+dataset_id: "novamart"
+display_name: "NovaMart"
+description: "E-commerce dataset with clickstream events, orders, sessions, users, experiments, support tickets, memberships, and NPS responses."
+domain: "e-commerce"
+is_seed: false
+
+connection:
+  type: "duckdb"
+  database: "novamart_practice"
+  schema: "main"
+
+summary:
+  table_count: 14
+  total_rows: 8121574
+  date_range:
+    min: "2025-01-01"
+    max: "2025-12-31"
+  primary_entities: ["users", "orders", "sessions", "events"]
+  key_dimensions: ["device", "acquisition_channel", "category", "country", "age_bucket"]
+
+local_data:
+  path: "data/practice/"
+  duckdb: "data/practice/novamart_practice.duckdb"
+
+status: active

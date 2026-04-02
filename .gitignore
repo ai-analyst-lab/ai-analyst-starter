@@ -1,0 +1,31 @@
+# Generated data
+data/
+
+# Pipeline intermediates
+**/working/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+
+# Environment
+.env
+.env.local
+
+# Node
+node_modules/
+
+# Rendered outputs
+*.pdf
+*.html
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
