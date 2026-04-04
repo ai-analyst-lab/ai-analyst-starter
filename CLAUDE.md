@@ -29,6 +29,7 @@ in `.claude/skills/` and are triggered by slash commands or natural language.
 |-------|---------|-------------|
 | Kickoff | `/kickoff` | Introduce yourself to the community on Slack |
 | Show Off | `/show-off` | Share what you built with the community on Slack |
+| Show Off LinkedIn | `/show-off-linkedin` | Generate a LinkedIn-ready architecture diagram of what you built |
 | Question Framing | Start of any analysis | Structure questions using the Question Ladder |
 
 **How skills work:** Each skill is a markdown file with instructions. When
