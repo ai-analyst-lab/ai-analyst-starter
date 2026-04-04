@@ -1,3 +1,9 @@
+---
+name: question-framing
+description: |
+  Structure analytical questions using the Question Ladder framework so every analysis starts with a clear decision context, measurable success criteria, and testable hypotheses. Use this skill whenever someone asks an analytical question, especially vague ones like "how are we doing?", "analyze our funnel", "look into why X happened", "can you investigate Y?", "what's causing Z?", or "tell me about [metric]". Also trigger when starting ANY new analysis — even if the question seems clear, apply the Question Ladder to ensure all four rungs (Goal, Decision, Metric, Hypothesis) are explicit before touching data. Trigger when you see phrases like "analyze", "investigate", "look into", "why did", "what's happening with", "can you check", "figure out", "explore", "deep dive", "understand", "what caused", or whenever someone presents a business question that needs framing before data work begins. This skill prevents wasted work by ensuring decision context exists before analysis starts. Always apply this before running any queries or calling the Data Explorer agent — framing first, analysis second.
+---
+
 # Skill: Question Framing
 
 ## Purpose
@@ -7,6 +13,13 @@ Structure analytical questions using the Question Ladder framework so every anal
 Apply this skill when starting any new analysis, when a user asks a vague question ("How are we doing?"), or when an analysis request lacks decision context. Always frame before analyzing.
 
 ## Instructions
+
+### Pre-flight: Load Learnings
+Before executing, check `.knowledge/learnings/index.md` for relevant entries:
+- Read the file. If it doesn't exist or is empty, skip silently.
+- Scan for entries under **"Question Framing"** and **"General"** headings (or related categories like "Business Context", "Methodology Notes").
+- If entries exist, incorporate them as constraints or context for this execution.
+- Never block execution if learnings are unavailable.
 
 ### The Question Ladder
 
@@ -23,25 +36,39 @@ HYPOTHESIS  → What do we expect to find, and why?
 
 ### Framing Process
 
+**CRITICAL: This skill is ONLY for framing questions - do NOT run SQL queries, do NOT explore data, do NOT call analysis agents. Your output is a Question Brief document, not analysis results.**
+
 **Step 1: Extract the decision**
 Ask: "What will you DO differently based on the answer?"
-- If the answer is "nothing" or "I'm just curious" → this is reporting, not analysis. Redirect to a dashboard or quick stat.
-- If the answer is a specific action → you have a decision. Proceed.
+- If the answer is "nothing" or "I'm just curious" → this is reporting, not analysis. Offer two paths:
+  - **Path A**: Quick stat/dashboard (if truly no decision)
+  - **Path B**: Clarify decision context first, then frame properly
+- If the answer is a specific action → you have a decision. Proceed to Step 2.
 
 **Step 2: Define success criteria**
 Ask: "How will you know the analysis answered your question?"
 - The answer should be specific: "If conversion rate dropped >10% in segment X, we'll prioritize a fix"
 - Not vague: "We'll understand our users better"
+- Success criteria should include specific thresholds, conditions, or decision rules
 
 **Step 3: Form testable hypotheses**
 Ask: "What do you think is happening, and why?"
 - Good: "I think mobile conversion dropped because the checkout redesign broke on small screens"
 - Bad: "I think things are bad"
+- Extract hypotheses from vague statements - e.g., "cart abandonment is high" → "abandonment >20% due to checkout friction at payment stage"
 
 **Step 4: Identify data requirements**
 Ask: "What data do we need, and do we have it?"
 - Map each hypothesis to specific metrics, segments, and time ranges
-- Flag gaps early (see Tracking Gap Identification skill)
+- Check if the data exists by reviewing schema documentation (don't query the database - just check availability)
+- Flag gaps early: "We need funnel step events, but only have order status"
+- Document what CAN and CANNOT be answered with available data
+
+**Step 5: Produce the Question Brief**
+Write the brief using the template below. Save it to `working/question_brief.md` or present it inline.
+- DO NOT proceed to analysis after writing the brief
+- DO NOT run SQL queries or call analysis agents
+- Hand off to the next phase (exploration/analysis) after the brief is approved
 
 ### Good vs. Bad Questions
 
@@ -158,8 +185,10 @@ FEASIBILITY ──────────────┼───────�
 
 ## Anti-Patterns
 
-1. **Never start analyzing before framing** — "just pulling some numbers" without a question leads to interesting-but-useless findings
-2. **Never accept "just curious" as the decision** — push for "what would you do differently?" If the answer is truly nothing, redirect to a dashboard
-3. **Never frame questions with implied answers** — "Can you prove that Feature X works?" is not a question, it's confirmation bias. Reframe as "What is the impact of Feature X on [metric]?"
-4. **Never frame questions too broadly** — "How are we doing?" needs scoping. What metric? What time range? Compared to what?
-5. **Never skip the hypothesis** — hypotheses prevent fishing expeditions and give you something specific to test
+1. **Never start analyzing before framing** — "just pulling some numbers" without a question leads to interesting-but-useless findings. Produce the Question Brief FIRST, then hand off to analysis.
+2. **Never run SQL or explore data during framing** — This phase is for structuring the question, not answering it. DO NOT execute queries, DO NOT call analysis agents, DO NOT produce charts or findings. Stop at the Question Brief.
+3. **Never accept "just curious" as the decision** — Push for "what would you do differently?" If the answer is truly nothing, offer Path A (quick stat) or Path B (clarify decision context first).
+4. **Never frame questions with implied answers** — "Can you prove that Feature X works?" is not a question, it's confirmation bias. Reframe as "What is the impact of Feature X on [metric]?"
+5. **Never frame questions too broadly** — "How are we doing?" needs scoping. What metric? What time range? Compared to what?
+6. **Never skip the hypothesis** — Hypotheses prevent fishing expeditions and give you something specific to test.
+7. **Never proceed without clarifying vague requests** — If you don't understand the decision context, ask clarifying questions iteratively until you do. Don't guess or assume.
