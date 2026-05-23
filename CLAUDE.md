@@ -47,7 +47,9 @@ runtime. The pattern: read the template → substitute variables → execute.
 
 See `agents/CONTRACT_TEMPLATE.md` for the format.
 
-**You don't have any agents yet. That's the point -- build your first one.**
+There's one example agent here to study: **`data-explorer.md`** -- it profiles a
+dataset, checks data quality, and summarizes what's there. Read it alongside
+`CONTRACT_TEMPLATE.md` to see the shape of a real agent, then build your own.
 
 ---
 
@@ -55,7 +57,10 @@ See `agents/CONTRACT_TEMPLATE.md` for the format.
 
 Your dataset is **NovaMart** -- a realistic e-commerce dataset with users,
 orders, sessions, clickstream events, experiments, support tickets, memberships,
-and NPS responses. Full year of data (2025), ~8M rows across 14 tables.
+and NPS responses. Full year of data (2024), ~8M rows across 13 tables.
+
+Before designing queries, read `.knowledge/datasets/novamart/quirks.md` -- it
+documents the data gotchas that quietly produce wrong answers.
 
 - **Schema + docs:** `.knowledge/datasets/novamart/schema.md`
 - **Connection config:** `.knowledge/datasets/novamart/manifest.yaml`

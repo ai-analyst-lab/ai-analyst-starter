@@ -30,12 +30,14 @@ See `CONTRACT_TEMPLATE.md` for the full format and examples.
 
 ## Build Your First Agent
 
-You don't have any agents yet. Here's how to start:
+There's one example agent here to study: **`data-explorer.md`** -- it profiles a
+dataset, checks data quality, and summarizes what's there. Read it alongside
+`CONTRACT_TEMPLATE.md` to see the shape of a real agent.
 
-1. Pick a task you do repeatedly (e.g., "explore a table", "compare two segments", "find anomalies")
-2. Copy `CONTRACT_TEMPLATE.md` as a starting point
+Then build your own:
+
+1. Pick a task you do repeatedly (e.g., "compare two segments", "find anomalies")
+2. Model it on `data-explorer.md`, or copy `CONTRACT_TEMPLATE.md` as a starting point
 3. Write the instructions as if explaining to a junior analyst
 4. Use `{{VARIABLES}}` for anything that changes between runs
 5. Test it by asking Claude to use it
-
-The best first agent is usually a **data exploration** agent -- something that profiles a table, checks data quality, and summarizes what's there.
