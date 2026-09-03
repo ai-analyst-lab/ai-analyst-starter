@@ -87,4 +87,4 @@ it reads CSVs directly and handles joins efficiently.
 |---------|-----|
 | SQL error or unexpected results | Check column names in `.knowledge/datasets/novamart/schema.md`. Verify table joins. |
 | Chart won't render | Make sure matplotlib is installed. Use `plt.savefig()` and `plt.close()` to avoid display issues. |
-| Data not found | Run `python data-generation/generate.py` to generate the dataset into `data/practice/`. |
+| Data not found | The course dataset is a download, not a build. Check that `data/practice/novamart_practice.duckdb` exists and report the path you are reading from. Do NOT run `data-generation/generate.py`: it builds a different dataset and will silently replace the one the course uses. |
