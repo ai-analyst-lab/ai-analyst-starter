@@ -23,14 +23,22 @@ cd ai-analyst-starter
 pip install -r requirements.txt
 ```
 
-### 3. Generate the dataset
+### 3. Get the dataset
+
+**On the course:** NovaMart is a download, not a build. The Week 0 setup checklist links the
+file and walks you through putting it in `data/practice/`. Do not run the generator; it produces
+a different dataset and everyone on the course needs to be working from the same one.
+
+**Outside the course**, or if you want your own copy to experiment with:
 
 ```bash
 pip install -r data-generation/requirements.txt
 python data-generation/generate.py
 ```
 
-This creates ~8M rows of realistic e-commerce data in `data/practice/` -- users, orders, sessions, clickstream events, experiments, support tickets, and more.
+That creates ~8M rows of realistic e-commerce data in `data/practice/` -- users, orders,
+sessions, clickstream events, experiments, support tickets, and more. The numbers will not match
+the course dataset.
 
 ### 4. Open Claude Code
 
