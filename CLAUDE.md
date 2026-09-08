@@ -41,15 +41,17 @@ analysis).
 
 ## Your Agents
 
-Agents are markdown templates that define reusable analytical workflows. They
-live in `agents/` and use `{{VARIABLE}}` placeholders that get filled in at
-runtime. The pattern: read the template → substitute variables → execute.
+An agent is an AI worker that owns a defined job. This starter uses native Claude Code project
+subagents in `.claude/agents/`. Claude Code discovers those files directly and runs each worker
+with its own instructions, context, and tools before returning the result to the main conversation.
 
-See `agents/CONTRACT_TEMPLATE.md` for the format.
+The included `data-explorer` agent profiles a source and owns
+`outputs/data_inventory.md`. Invoke it explicitly with `@agent-data-explorer` the first time so the
+execution path is visible.
 
-There's one example agent here to study: **`data-explorer.md`** -- it profiles a
-dataset, checks data quality, and summarizes what's there. Read it alongside
-`CONTRACT_TEMPLATE.md` to see the shape of a real agent, then build your own.
+See `docs/AGENT-DESIGN.md` for the eight design questions and the build-and-evaluate loop. A
+contract is the course's method for making the job and handoff inspectable. It is not a separate
+Claude Code runtime format.
 
 ---
 

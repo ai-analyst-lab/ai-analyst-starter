@@ -59,18 +59,20 @@ Claude reads `CLAUDE.md` and becomes your AI Product Analyst. Try asking it a qu
 ```
 CLAUDE.md                    ← The persona (read this first)
 data-generation/             ← Scripts to generate practice data
-.claude/skills/              ← 3 starter skills (kickoff, show-off, question-framing)
-agents/                      ← Empty -- you'll build your first agent here
+.claude/skills/              ← Starter skills (kickoff, show-off, question-framing)
+.claude/agents/              ← Native Claude Code project subagents
 .knowledge/                  ← Dataset schema and connection config
+docs/AGENT-DESIGN.md         ← How to design, build, and evaluate an agent
 themes/                      ← Marp slide themes
 templates/                   ← Slide deck template
 ```
 
 ## What's NOT Here (Yet)
 
-No pre-built agents. No pipeline. No helpers. No chart library. You build what you need.
+The starter includes one example agent, but no finished analytical pipeline, multi-agent workflow,
+helper library, or chart system. You build and evaluate those pieces as the course progresses.
 
-That's the whole point of Day 1: understand how the pieces work by building them yourself.
+That is the point of the starter: understand how the pieces work by building them yourself.
 
 ## Key Concepts
 
@@ -78,12 +80,18 @@ That's the whole point of Day 1: understand how the pieces work by building them
 
 **Skills** (`/.claude/skills/`) -- Instruction files triggered by slash commands or context. Read by Claude at runtime. Think of them as "how-to guides" for specific tasks.
 
-**Agents** (`/agents/`) -- Markdown templates with `{{VARIABLE}}` placeholders. Define reusable analytical workflows. Read the template → substitute variables → execute.
+**Agents** (`.claude/agents/`) -- AI workers that own defined jobs. Claude Code discovers these
+project subagents directly, runs them in separate contexts with their configured tools, and returns
+their results to the main conversation.
+
+The included `data-explorer` is a working example. Read
+[`docs/AGENT-DESIGN.md`](docs/AGENT-DESIGN.md) before building your own. To guarantee one explicit
+run, select it from the `@` typeahead or type `@agent-data-explorer`.
 
 ## Next Steps
 
 1. Read `CLAUDE.md` to understand the persona
 2. Try `/kickoff` to introduce yourself to the community
 3. Ask Claude an analytical question about NovaMart
-4. Build your first agent (check `agents/CONTRACT_TEMPLATE.md` for the format)
+4. Study `.claude/agents/data-explorer.md`, then build your first project subagent
 5. Try `/show-off` to share what you built
